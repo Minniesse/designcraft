@@ -384,7 +384,7 @@ queues `(token, at, frames)` in `queued_shots`, sends
 `user_data.downcast_ref::<u64>()`. All of that changes.
 
 Shared contract: the suite selects one bounded, cancelable completion slot per admitted
-request. Eleven existing craft-ui creative consumers adopt its helper; DeckCraft, FigCraft and ArtCraft Native keep a
+request. Eleven existing craft-ui creative consumers adopt its helper; DeckCraft, FigCraft and one other upstream app keep a
 small local contract-compatible adapter. DesignCraft uses craft-ui. The helper is staged as
 CL-2 (provisional) and frozen as CL-2F after DesignCraft and GridCraft adapters are reviewed.
 

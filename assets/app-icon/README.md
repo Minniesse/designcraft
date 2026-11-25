@@ -1,7 +1,7 @@
 # DesignCraft app icon
 
 **A calico cat wearing a polka-dot scarf**, as an engraving-style head-and-shoulders portrait in the
-Crafting Apps' owl-template framing: a full-bleed colour field, the cat in three-quarter view, its
+shared owl-template framing of the Craft apps: a full-bleed colour field, the cat in three-quarter view, its
 shoulders running off the bottom edge.
 
 ## Palette
@@ -22,7 +22,7 @@ transparent margin.
 
 ## Provenance
 
-The owner drew the cat in ArtCraft. `designcraft.svg` is traced from the drawing at 2048 px and
+The owner drew the cat. `designcraft.svg` is traced from the drawing at 2048 px and
 `designcraft-small.svg` at 1024 px.
 
 ## Files
