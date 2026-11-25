@@ -2569,3 +2569,28 @@ fn a_save_waits_for_the_checks_of_linked_files() {
     assert!(app.waiting_save.is_none() && !app.session.active().unwrap().is_dirty(), "Esc saves without waiting");
     assert_ne!(std::fs::read(&doc).unwrap(), before);
 }
+
+/// Where the upstream build drew its brand mark (About, the start screen's card), this build
+/// shows the app's name as plain text; the About window carries the "Based on" line, and no
+/// screen offers a link to the upstream community.
+#[test]
+fn about_and_start_screen_show_the_app_name_in_place_of_the_mark() {
+    use egui_kittest::kittest::Queryable;
+    let mut app = DesignApp::new(designcraft_engine::Session::new(), Services::default());
+    app.run("help.about", json!({})).unwrap();
+    let mut h = egui_kittest::Harness::builder().with_size(egui::vec2(1440.0, 900.0)).build_ui_state(
+        |ui, app: &mut DesignApp| {
+            let ctx = ui.ctx().clone();
+            app.logic(&ctx);
+            app.ui(ui);
+        },
+        app,
+    );
+    h.run_steps(4);
+    // The About heading and the start screen's card.
+    assert!(h.query_all_by_label("DesignCraft").count() >= 2, "the app name shows in About and on the start screen");
+    assert!(h.query_by_label(crate::about::BASED_ON).is_some(), "About shows the Based on line");
+    for gone in ["Discord", "suite of open creative tools", "More Art", "community", "getart"] {
+        assert!(h.query_by_label_contains(gone).is_none(), "{gone} is still shown");
+    }
+}

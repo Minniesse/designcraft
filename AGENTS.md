@@ -75,7 +75,7 @@ Checks for the crates you changed: `cargo test -p <crate>`, `cargo clippy -p <cr
 Paths and conventions:
 
 - No crate allows `unsafe` (`unsafe_code = "forbid"` in the workspace).
-- Attribution file: `ASSETS.md` (`cargo xtask assets`). `docs/brand/` holds ArtCraft brand files under `docs/brand/LICENSE-brand.txt`.
+- Attribution file: `ASSETS.md` (`cargo xtask assets`).
 - Fonts: storytold/craft-fonts through the optional `CRAFT_FONTS_DIR` build input, embedded by `crates/fonts/build.rs` as `designcraft_fonts::CRAFT_FONTS`; unset, it is empty and the app uses bundled and system fonts. The Latin UI and document fonts in `assets/fonts/` stay.
 - Test corpora: `storytold/photocraft-corpus`, fetched pinned and sha256-verified.
 - Progress log: `ROADMAP.md`. `plan/` is an optional gitignored notebook.

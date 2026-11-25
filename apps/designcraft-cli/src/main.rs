@@ -18,7 +18,7 @@
 //!                                      # file's own GTS_PDFXVersion)
 //! designcraft-cli thumbnail FILE.designcraft OUT.png [SIZE]   # the file's first-page preview, fitted to SIZE
 //!                                      # (the freedesktop thumbnailer for Linux file managers)
-//! designcraft-cli links                   # Discord, website, app page and GitHub links
+//! designcraft-cli links                   # the GitHub repository and issue tracker links
 //! designcraft-cli --version               # print the version
 //! ```
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable)]
@@ -80,12 +80,7 @@ non-zero exit when a step fails."#;
 
 /// The links line under the usage block.
 fn usage_footer() -> String {
-    format!(
-        "\nCommunity: {}  ·  {}  ·  {}",
-        designcraft_engine::links::DISCORD,
-        designcraft_engine::links::APP_PAGE,
-        designcraft_engine::links::GITHUB
-    )
+    format!("\nSource: {}  ·  Issues: {}", designcraft_engine::links::GITHUB, designcraft_engine::links::ISSUES)
 }
 
 /// stdout went away. A reader that stopped early (a closed pipe) ends the program quietly, as
@@ -225,8 +220,8 @@ fn main() -> ExitCode {
         Some("validate-pdf") => report(validate_pdf(args.get(1..).unwrap_or_default())),
         Some("thumbnail") => report(thumbnail(&args[1..])),
         Some("links") => {
-            use designcraft_engine::links::{APP_PAGE, DISCORD, GITHUB, ISSUES, WEBSITE};
-            outln!("Discord   {DISCORD}\nWebsite   {WEBSITE}\nApp page  {APP_PAGE}\nGitHub    {GITHUB}\nIssues    {ISSUES}");
+            use designcraft_engine::links::{GITHUB, ISSUES};
+            outln!("GitHub    {GITHUB}\nIssues    {ISSUES}");
             ExitCode::SUCCESS
         }
         // Asking for help is not an error: it goes to stdout and succeeds. An unknown command
